@@ -53,15 +53,15 @@
     <form action="<?= base_url("index.php/admin/tambah_siswa"); ?>" method="post">
       <div class="form-group">
         <label for="Nomor Ujian">No. Ujian</label>
-        <input type="text" class="form-control" name="no_ujian" placeholder="Contoh: 1000-1" required>
+        <input type="text" class="form-control" name="no_ujian" placeholder="Contoh: 1-04-001-0001-5" required>
       </div>
       <div class="form-group">
         <label for="Nama">Nama</label>
-        <input type="text" class="form-control" name="nama" placeholder="John Doe" required>
+        <input type="text" class="form-control" name="nama" placeholder="Bambang Susilo" required>
       </div>
       <div class="form-group">
         <label for="Jurusan">Jurusan</label>
-        <input type="text" class="form-control" name="jurusan" placeholder="TKJ" required>
+        <input type="text" class="form-control" name="jurusan" placeholder="AKUNTANSI" required>
       </div>
       <button class="btn btn-primary" type="submit">Tambah</button>
     </form>

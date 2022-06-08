@@ -63,19 +63,19 @@
         </div>
         <div class="form-group">
           <label for="Bahasa Indonesia">Bahasa Indonesia</label>
-          <input type="number" min="0" max="10" class="form-control" name="bi" required>
+          <input type="number" min="0" max="10" class="form-control" name="bi" placeholder="Masukkan angka tanpa titik (.) atau koma (,)" required>
         </div>
         <div class="form-group">
           <label for="Matematika">Matematika</label>
-          <input type="number" min="0" max="10" class="form-control" name="mat" required>
+          <input type="number" min="0" max="10" class="form-control" name="mat" placeholder="Masukkan angka tanpa titik (.) atau koma (,)" required>
         </div>
         <div class="form-group">
           <label for="Bahasa Inggris">Bahasa Inggris</label>
-          <input type="number" min="0" max="10" class="form-control" name="bing" required>
+          <input type="number" min="0" max="10" class="form-control" name="bing" placeholder="Masukkan angka tanpa titik (.) atau koma (,)" required>
         </div>
         <div class="form-group">
           <label for="Kejuruan">Kejuruan</label>
-          <input type="number" min="0" max="10" class="form-control" name="kejuruan" required>
+          <input type="number" min="0" max="10" class="form-control" name="kejuruan" placeholder="Masukkan angka tanpa titik (.) atau koma (,)" required>
         </div>
         <button class="btn btn-primary" type="submit">Tambah</button>
       </form>

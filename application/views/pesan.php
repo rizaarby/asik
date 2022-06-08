@@ -24,7 +24,7 @@
                   <td align="center">Nama Pengirim</td>
                   <td align="center">Pesan</td>
                   <td align="center">Email</td>
-                  <td align="center">No Telp</td>
+                  <td align="center">No. Telp</td>
 
 
 
