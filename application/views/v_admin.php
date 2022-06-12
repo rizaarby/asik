@@ -28,5 +28,5 @@
 
     <h1>Halo, Admin!</h1>
     <p>Ini merupakan halaman administrasi untuk pengumuman <strong>Kelulusan 2022</strong>.</p>
-    <p>Fasilitas yang tersedia saat ini adalah <strong>Manajemen User</strong> yang diberi hak untuk mengelola keseluruhan data aplikasi ini.</p>
+    <p>Fasilitas yang tersedia saat ini adalah <strong>Manajemen User</strong> yang diberi hak untuk mengelola aplikasi ini.</p>
   </div>

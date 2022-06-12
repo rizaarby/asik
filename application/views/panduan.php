@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit ('No direct script access allowed');
 <hr>
 <div class="jumbotron">
       <div class="container">
-       <p><strong>Ketik nomor ujian Anda kemudian klik tombol cari.</strong></p>
+       <p><strong>Ketik nomor peserta ujian Anda kemudian klik tombol cari.</strong></p>
        
 
       </div>

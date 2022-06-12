@@ -1,4 +1,10 @@
 <div class="container">
+  <?php
+  $message = $this->session->flashdata('message');
+  if (isset($message)) {
+    echo $message;
+  }
+  ?>
   <h3>Tambah Data Siswa</h3>
   <hr>
   <!-- <div class="jumbotron">
@@ -53,15 +59,18 @@
     <form action="<?= base_url("index.php/admin/tambah_siswa"); ?>" method="post">
       <div class="form-group">
         <label for="Nomor Ujian">No. Ujian</label>
-        <input type="text" class="form-control" name="no_ujian" placeholder="Contoh: 1-04-001-0001-5" required>
+        <input type="text" class="form-control" name="no_ujian" value="<?= set_value('no_ujian') ?>" placeholder="Contoh: 1-04-001-0001-5">
+        <?= form_error('no_ujian', '<small class="text-danger">', '</small>') ?>
       </div>
       <div class="form-group">
         <label for="Nama">Nama</label>
-        <input type="text" class="form-control" name="nama" placeholder="Bambang Susilo" required>
+        <input type="text" class="form-control" name="nama" value="<?= set_value('nama') ?>" placeholder="Bambang Susilo">
+        <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
       </div>
       <div class="form-group">
         <label for="Jurusan">Jurusan</label>
-        <input type="text" class="form-control" name="jurusan" placeholder="AKUNTANSI" required>
+        <input type="text" class="form-control" name="jurusan" value="<?= set_value('jurusan') ?>" placeholder="AKUNTANSI">
+        <?= form_error('jurusan', '<small class="text-danger">', '</small>') ?>
       </div>
       <button class="btn btn-primary" type="submit">Tambah</button>
     </form>
@@ -72,7 +81,7 @@
     <thead>
       <tr>
         <th scope="col">No.</th>
-        <th scope="col">No. Ujian</th>
+        <th scope="col">No.Ujian</th>
         <th scope="col">Nama</th>
         <th scope="col">Jurusan</th>
       </tr>
@@ -93,3 +102,9 @@
   </table>
   <div class="well">
   </div>
+
+  <script>
+    var timeout = 3000;
+
+    $('.alert').delay(timeout).fadeOut(300);
+  </script>

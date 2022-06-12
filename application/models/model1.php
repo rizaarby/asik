@@ -141,7 +141,7 @@ class Model1 extends CI_Model
 
 	function get_siswa_list($limit, $start)
 	{
-		$query = $this->db->get('asik2022', $limit, $start);
+		$query = $this->db->get('asik2018', $limit, $start);
 		return $query;
 	}
 
@@ -185,6 +185,27 @@ class Model1 extends CI_Model
 		return $query;
 	}
 
+	public function upload_file($filename)
+	{
+		$this->load->library('upload'); // Load librari upload
+
+		$config['upload_path'] = './excel/';
+		$config['allowed_types'] = 'xlsx';
+		$config['max_size']	= '2048';
+		$config['overwrite'] = true;
+		$config['file_name'] = $filename;
+
+		$this->upload->initialize($config); // Load konfigurasi uploadnya
+		if ($this->upload->do_upload('file')) { // Lakukan upload dan Cek jika proses upload berhasil
+			// Jika berhasil :
+			$return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+			return $return;
+		} else {
+			// Jika gagal :
+			$return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
+			return $return;
+		}
+	}
 
 	// insert data siswa manual satu persatu
 	public function insert_data_siswa($data)

@@ -37,7 +37,7 @@
                   <th rowspan="2">No. Ujian</th>
                   <th rowspan="2">Nama Siswa</th>
                   <th rowspan="2">Kompetensi Keahlian</th>
-                  <th colspan="5">Nilai Ujian</th>
+                  <th colspan="5">Nilai UN</th>
                   <th rowspan="2">Status</th>
                   <th scope="col" colspan="2" rowspan="2">Action</th>
 

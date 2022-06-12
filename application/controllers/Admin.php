@@ -206,15 +206,57 @@ class Admin extends CI_Controller
 		$nama = $this->input->post('nama');
 		$jurusan = $this->input->post('jurusan');
 
-		$data = array(
-			'no_ujian' => $no_ujian,
-			'nama' => $nama,
-			'jurusan' => $jurusan
+		$this->form_validation->set_rules(
+			'no_ujian',
+			'Nomor Ujian',
+			'required|is_unique[tabel_siswa.no_ujian]',
+			array(
+				'required' => 'No. Ujian wajib diisi',
+				'is_unique' => 'No. Ujian tidak boleh sama'
+			)
+		);
+		$this->form_validation->set_rules(
+			'nama',
+			'Nama',
+			'required',
+			array(
+				'required' => 'Nama wajib diisi'
+			)
+		);
+		$this->form_validation->set_rules(
+			'jurusan',
+			'Jurusan',
+			'required',
+			array(
+				'required' => 'Jurusan wajib diisi'
+			)
 		);
 
-		$this->model1->insert_data_siswa($data);
+		if ($this->form_validation->run() == FALSE) {
+			$data['siswa'] = $this->model1->get_siswa();
 
-		redirect('admin/form');
+			$this->load->view('template/head.php');
+			$this->load->view('template/nav.php');
+			$this->load->view('i_siswa', $data);
+			$this->load->view('template/footer.php');
+		} else {
+			$data = array(
+				'no_ujian' => $no_ujian,
+				'nama' => $nama,
+				'jurusan' => $jurusan
+			);
+
+			$inserted = $this->model1->insert_data_siswa($data);
+			if ($inserted) {
+				$this->session->set_flashdata(
+					'message',
+					'<div class="alert alert-success" role="alert">
+				Data siswa berhasil ditambahkan
+			</div>'
+				);
+			}
+			redirect('admin/form');
+		}
 	}
 
 	public function input_nilai()
@@ -225,17 +267,79 @@ class Admin extends CI_Controller
 		$bing = $this->input->post('bing');
 		$kejuruan = $this->input->post('kejuruan');
 
-		$data = array(
-			'no_ujian' => $no_ujian,
-			'bi' => $bi,
-			'mat' => $mat,
-			'bing' => $bing,
-			'kejuruan' => $kejuruan
+		$this->form_validation->set_rules(
+			'no_ujian',
+			'Siswa',
+			'required',
+			array(
+				'required' => 'Siswa wajib dipilih'
+			)
 		);
 
-		$this->model1->insert_nilai_siswa($data);
+		$this->form_validation->set_rules(
+			'bi',
+			'Nilai Bahasa Indonesia',
+			'required',
+			array(
+				'required' => 'Nilai Bahasa Indonesia wajib diisi'
+			)
+		);
 
-		redirect('admin/form2');
+		$this->form_validation->set_rules(
+			'mat',
+			'Nilai Matematika',
+			'required',
+			array(
+				'required' => 'Nilai Matematika wajib diisi'
+			)
+		);
+
+		$this->form_validation->set_rules(
+			'bing',
+			'Nilai Bahasa Inggris',
+			'required',
+			array(
+				'required' => 'Nilai Bahasa Inggris wajib diisi'
+			)
+		);
+
+		$this->form_validation->set_rules(
+			'kejuruan',
+			'Nilai Kejuruan',
+			'required',
+			array(
+				'required' => 'Nilai Kejuruan wajib diisi'
+			)
+		);
+
+		if ($this->form_validation->run() == FALSE) {
+			$data['siswa'] = $this->model1->get_siswa_belum_dinilai();
+
+			$this->load->view('template/head.php');
+			$this->load->view('template/nav.php');
+			$this->load->view('i_nilai', $data);
+			$this->load->view('template/footer.php');
+		} else {
+			$data = array(
+				'no_ujian' => $no_ujian,
+				'bi' => $bi,
+				'mat' => $mat,
+				'bing' => $bing,
+				'kejuruan' => $kejuruan
+			);
+
+			$inserted = $this->model1->insert_nilai_siswa($data);
+			if ($inserted) {
+				$this->session->set_flashdata(
+					'message',
+					'<div class="alert alert-success" role="alert">
+				Nilai berhasil ditambahkan
+			</div>'
+				);
+			}
+
+			redirect('admin/form2');
+		}
 	}
 
 	public function form()
@@ -298,6 +402,80 @@ class Admin extends CI_Controller
 		$this->load->view('template/nav.php');
 		$this->load->view('i_nilai', $data);
 		$this->load->view('template/footer.php');
+	}
+
+
+	public function import()
+	{
+		// Load plugin PHPExcel nya
+		include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
+
+		$excelreader = new PHPExcel_Reader_Excel2007();
+		$loadexcel = $excelreader->load('excel/' . $this->filename . '.xlsx'); // Load file yang telah diupload ke folder excel
+		$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
+
+		// Buat sebuah variabel array untuk menampung array data yg akan kita insert ke database
+		$data = [];
+
+		$numrow = 1;
+		foreach ($sheet as $row) {
+			// Cek $numrow apakah lebih dari 1
+			// Artinya karena baris pertama adalah nama-nama kolom
+			// Jadi dilewat saja, tidak usah diimport
+			if ($numrow > 1) {
+				// Kita push (add) array data ke variabel data
+				array_push($data, [
+					'no_ujian' => $row['A'], // Insert data nis dari kolom A di excel
+					'nama' => $row['B'], // Insert data nama dari kolom B di excel
+					'jurusan' => $row['C'], // Insert data jenis kelamin dari kolom C di excel
+
+				]);
+			}
+
+			$numrow++; // Tambah 1 setiap kali looping
+		}
+
+		// Panggil fungsi insert_multiple yg telah kita buat sebelumnya di model
+		$this->Model1->insert_multiple($data);
+
+		redirect("admin/form"); // Redirect ke halaman awal (ke controller siswa fungsi index)
+	}
+
+	public function import2()
+	{
+		// Load plugin PHPExcel nya
+		include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
+
+		$excelreader = new PHPExcel_Reader_Excel2007();
+		$loadexcel = $excelreader->load('excel/' . $this->filename . '.xlsx'); // Load file yang telah diupload ke folder excel
+		$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
+
+		// Buat sebuah variabel array untuk menampung array data yg akan kita insert ke database
+		$data = [];
+
+		$numrow = 1;
+		foreach ($sheet as $row) {
+			// Cek $numrow apakah lebih dari 1
+			// Artinya karena baris pertama adalah nama-nama kolom
+			// Jadi dilewat saja, tidak usah diimport
+			if ($numrow > 1) {
+				// Kita push (add) array data ke variabel data
+				array_push($data, [
+					'no_ujian' => $row['A'], // Insert data nis dari kolom A di excel
+					'bi' => $row['B'], // Insert data nama dari kolom B di excel
+					'mat' => $row['C'], // Insert data jenis kelamin dari kolom C di excel
+					'bing' => $row['D'], // Insert data jenis kelamin dari kolom C di excel
+					'kejuruan' => $row['E'], // Insert data jenis kelamin dari kolom C di excel	
+				]);
+			}
+
+			$numrow++; // Tambah 1 setiap kali looping
+		}
+
+		// Panggil fungsi insert_multiple yg telah kita buat sebelumnya di model
+		$this->Model1->insert_multiple2($data);
+
+		redirect("admin/form2"); // Redirect ke halaman awal (ke controller siswa fungsi index)
 	}
 
 	function truncate()
