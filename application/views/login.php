@@ -7,9 +7,6 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<meta name="description" content="aplikasi sederhana untuk menampilkan pengumuman hasil ujian nasional secara online">
-	<meta name="author" content="slamet.bsan@gmail.com">
 
 	<title>Pengumuman Kelulusan Online</title>
 	<link rel="icon" href="<?php echo base_url('assets/images/logo3.png') ?>" type="image/gif" sizes="16x16">
@@ -74,7 +71,7 @@
 	<div class="container">
 
 		<form class="form-signin" action="login/aksi_login" method="post">
-			<h2 class="form-signin-heading">Silahkan login</h2>
+			<h2 class="form-signin-heading">Login Administrator ASIK</h2>
 			<?php echo $this->session->flashdata('failed'); ?>
 			<label for="inputUsername" class="sr-only">Username</label>
 			<input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>

@@ -91,7 +91,6 @@ ForeColor = "";
 CountActive = true;
 CountStepper = -1;
 LeadingZero = true;
-DisplayFormat = "%%D%% Hari, %%H%% Jam, %%M%% Menit, %%S%% Detik Lagi, Menuju Waktu Pengumuman Kelulusan";
 FinishMessage = "Hore, Sekarang Waktunya Pengumuman!";
 </script>
 <script language="JavaScript" src="<?php echo base_url();?>assets/js/countdown.js"></script>
