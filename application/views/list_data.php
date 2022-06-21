@@ -37,7 +37,7 @@
                   <th rowspan="2">No. Ujian</th>
                   <th rowspan="2">Nama Siswa</th>
                   <th rowspan="2">Kompetensi Keahlian</th>
-                  <th colspan="5">Nilai UN</th>
+                  <th colspan="5">Nilai Ujian</th>
                   <th rowspan="2">Status</th>
                   <th scope="col" colspan="2" rowspan="2">Action</th>
 
@@ -92,7 +92,7 @@
                       <a class="btn-edit bg-primary" href="<?php echo site_url('admin/get_data_siswa_dan_nilai/' . $row->no_ujian); ?>"><i class="fa fa-edit text-white"></i></a>
                     </td>
                     <td align="center">
-                      <a class="btn-hapus bg-danger" href="<?php echo site_url('admin/hapus_data_siswa/' . $row->no_ujian); ?>" onClick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash text-white"></i></a>
+                      <a class="btn-hapus bg-danger" href="<?php echo site_url('admin/hapus_data_siswa/' . $row->no_ujian); ?>" onClick="return confirm('Anda yakin akan menghapusnya?')"><i class="fa fa-trash text-white"></i></a>
                     </td>
 
 
