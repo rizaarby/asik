@@ -9,52 +9,8 @@
   <hr>
   <!-- <div class="jumbotron">
       <div class="container">
-        <form method="post" action="<?php echo base_url("index.php/admin/form"); ?>" enctype="multipart/form-data"> -->
-  <!-- 
-    -- Buat sebuah input type file
-    -- class pull-left berfungsi agar file input berada di sebelah kiri
-    -->
+        <form method="post" action="<?php echo base_url("index.php/admin/form_siswa"); ?>" enctype="multipart/form-data"> -->
 
-  <!-- <input type="file" name="file"> -->
-
-  <!--
-    -- BUat sebuah tombol submit untuk melakukan preview terlebih dahulu data yang akan di import
-    -->
-
-  <!-- <input type="submit" value="upload" name="preview">
-        </form> -->
-
-  <!-- <form method="post" action="<?php echo base_url("index.php/admin/import"); ?>" enctype="multipart/form-data"> -->
-  <!-- 
-    -- Buat sebuah input type file
-    -- class pull-left berfungsi agar file input berada di sebelah kiri
-    -->
-  <!-- <br>Import Ke Database*: <br>
-          <input type="submit" value="Import" class="btn btn-primary">
-        </form><br>
-        <p> -->
-  <!-- *File yang bisa di import adalah .xls (Excel 2003-2007).</p>
-        Download contoh file excel <a href="../../excel/import_data_siswa.xlsx">Download</a> <br>
-        <strong>*Jangan lupa Kosongkan Data terlebih dahulu sebelum diimport.</strong>
-        </form>
-        <form method="post" action="<?php echo base_url("index.php/admin/truncate"); ?>"> -->
-
-  <!-- 
-    -- Buat sebuah input type file
-    -- class pull-left berfungsi agar file input berada di sebelah kiri
-    -->
-
-
-  <!--
-    -- BUat sebuah tombol submit untuk melakukan preview terlebih dahulu data yang akan di import
-    -->
-  <!-- <br>
-          <input type="submit" value="Kosongkan Data" class="btn btn-primary">
-        </form>
-
-      </div>
-
-    </div> -->
   <div class="jumbotron">
     <form action="<?= base_url("index.php/admin/tambah_siswa"); ?>" method="post">
       <div class="form-group">

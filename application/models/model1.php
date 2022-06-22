@@ -10,7 +10,7 @@ class Model1 extends CI_Model
 
 	public function tampil_data()
 	{
-		$sql = "SELECT * FROM asik2018";
+		$sql = "SELECT * FROM asik2022";
 		$tampil = $this->db->query($sql);
 		return $tampil->result();
 	}
@@ -31,7 +31,6 @@ class Model1 extends CI_Model
 			'username' => $username,
 			'password' => $password
 
-
 		);
 		$this->db->insert('tabel_users', $data);
 	}
@@ -41,7 +40,6 @@ class Model1 extends CI_Model
 		$data = array(
 			'id' => '',
 			'settanggal' => $settanggal
-
 
 		);
 		$this->db->insert('tabel_settanggal', $data);
@@ -54,8 +52,6 @@ class Model1 extends CI_Model
 			'pesan' => $pesan,
 			'email' => $email,
 			'notelp' => $notelp
-
-
 
 		);
 		$this->db->insert('tabel_pesan', $data);
@@ -141,7 +137,7 @@ class Model1 extends CI_Model
 
 	function get_siswa_list($limit, $start)
 	{
-		$query = $this->db->get('asik2018', $limit, $start);
+		$query = $this->db->get('asik2022', $limit, $start);
 		return $query;
 	}
 
@@ -185,27 +181,6 @@ class Model1 extends CI_Model
 		return $query;
 	}
 
-	public function upload_file($filename)
-	{
-		$this->load->library('upload'); // Load librari upload
-
-		$config['upload_path'] = './excel/';
-		$config['allowed_types'] = 'xlsx';
-		$config['max_size']	= '2048';
-		$config['overwrite'] = true;
-		$config['file_name'] = $filename;
-
-		$this->upload->initialize($config); // Load konfigurasi uploadnya
-		if ($this->upload->do_upload('file')) { // Lakukan upload dan Cek jika proses upload berhasil
-			// Jika berhasil :
-			$return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
-			return $return;
-		} else {
-			// Jika gagal :
-			$return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
-			return $return;
-		}
-	}
 
 	// insert data siswa manual satu persatu
 	public function insert_data_siswa($data)

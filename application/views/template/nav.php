@@ -18,10 +18,10 @@
                     <a class="nav-link" href="<?php echo site_url(); ?>/admin/view_settanggal">Set Tanggal</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo site_url(); ?>/admin/form">Input Data Siswa</a>
+                    <a class="nav-link" href="<?php echo site_url(); ?>/admin/form_siswa">Input Data Siswa</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo site_url(); ?>/admin/form2">Input Nilai</a>
+                    <a class="nav-link" href="<?php echo site_url(); ?>/admin/form_nilai">Input Nilai</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="<?php echo site_url(); ?>/admin/list_data">Lihat Data</a>

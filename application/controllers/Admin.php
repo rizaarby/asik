@@ -255,7 +255,7 @@ class Admin extends CI_Controller
 			</div>'
 				);
 			}
-			redirect('admin/form');
+			redirect('admin/form_siswa');
 		}
 	}
 
@@ -272,7 +272,7 @@ class Admin extends CI_Controller
 			'Siswa',
 			'required',
 			array(
-				'required' => 'Siswa wajib dipilih'
+				'required' => 'Silahkan pilih siswa!'
 			)
 		);
 
@@ -281,7 +281,7 @@ class Admin extends CI_Controller
 			'Nilai Bahasa Indonesia',
 			'required',
 			array(
-				'required' => 'Nilai Bahasa Indonesia wajib diisi'
+				'required' => 'Nilai Bahasa Indonesia wajib diisi!'
 			)
 		);
 
@@ -290,7 +290,7 @@ class Admin extends CI_Controller
 			'Nilai Matematika',
 			'required',
 			array(
-				'required' => 'Nilai Matematika wajib diisi'
+				'required' => 'Nilai Matematika wajib diisi!'
 			)
 		);
 
@@ -299,7 +299,7 @@ class Admin extends CI_Controller
 			'Nilai Bahasa Inggris',
 			'required',
 			array(
-				'required' => 'Nilai Bahasa Inggris wajib diisi'
+				'required' => 'Nilai Bahasa Inggris wajib diisi!'
 			)
 		);
 
@@ -308,7 +308,7 @@ class Admin extends CI_Controller
 			'Nilai Kejuruan',
 			'required',
 			array(
-				'required' => 'Nilai Kejuruan wajib diisi'
+				'required' => 'Nilai Kejuruan wajib diisi!'
 			)
 		);
 
@@ -333,13 +333,35 @@ class Admin extends CI_Controller
 				$this->session->set_flashdata(
 					'message',
 					'<div class="alert alert-success" role="alert">
-				Nilai berhasil ditambahkan
+				Nilai berhasil ditambahkan!
 			</div>'
 				);
 			}
 
-			redirect('admin/form2');
+			redirect('admin/form_nilai');
 		}
+	}
+
+	public function form_siswa()
+	{
+
+		$data['siswa'] = $this->model1->get_siswa();
+
+		$this->load->view('template/head.php');
+		$this->load->view('template/nav.php');
+		$this->load->view('i_siswa', $data);
+		$this->load->view('template/footer.php');
+	}
+
+	public function form_nilai()
+	{
+
+		$data['siswa'] = $this->model1->get_siswa_belum_dinilai();
+
+		$this->load->view('template/head.php');
+		$this->load->view('template/nav.php');
+		$this->load->view('i_nilai', $data);
+		$this->load->view('template/footer.php');
 	}
 
 	function truncate()

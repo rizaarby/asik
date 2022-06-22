@@ -71,7 +71,7 @@
 	<div class="container">
 
 		<form class="form-signin" action="login/aksi_login" method="post">
-			<h2 class="form-signin-heading">Login Administrator ASIK</h2>
+			<h2 align="center" class="form-signin-heading">Login Administrator ASIK</h2>
 			<?php echo $this->session->flashdata('failed'); ?>
 			<label for="inputUsername" class="sr-only">Username</label>
 			<input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>

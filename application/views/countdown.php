@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit ('No direct script access allowed');
         <script>
             var url = "<?php echo base_url();?>index.php/welcome/cari"; // url tujuan
             var home = "Halaman Home"
-            var count = 10; // dalam detik
+            var count = 5; // dalam detik
             function countDown() {
                 if (count > 0) {
                     count--;
